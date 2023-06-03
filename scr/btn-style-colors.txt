@@ -1,0 +1,52 @@
+buttons variables color
+
+//----------- colors variable -----------
+
+$opCol: rgb(44, 170, 61);
+$mtnCol: rgb(226, 230, 0);
+$mgCol: rgb(0, 14, 209);
+
+
+
+// .operator {
+//   background-color: white;
+//   border-color: $opCol;
+//   color: $opCol;
+// }
+// .operator:hover {
+//   background-color: $opCol;
+//   color: white;
+// }
+
+// .maintenance {
+//   background-color: white;
+//   border-color: $mtnCol;
+//   color: $mtnCol;
+// }
+// .maintenance:hover {
+//   background-color: $mtnCol;
+//   color: white;
+// }
+
+// .manager {
+//   background-color: white;
+//   border-color: $mgCol;
+//   color: $mgCol;
+// }
+// .manager:hover {
+//   background-color: $mgCol;
+//   color: white;
+// }
+
+// .opActive {
+//   background-color: $opCol;
+//   color: white;
+// }
+// .mtnActive {
+//   background-color: $mtnCol;
+//   color: white;
+// }
+// .mgActive {
+//   background-color: $mgCol;
+//   color: white;
+// }

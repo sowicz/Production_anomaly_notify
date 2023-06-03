@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+  <div class="background-img">
+    <nav>
+        <div class="logo">Logo</div>
+        <ul class="navbar-items">
+          <li><a href="#">Main Board</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+    
+      <section class="buttons">
+        <button class="btn operator">Operator</button>
+        <button class="btn maintenance">Maintenance</button>
+        <button class="btn manager">Manager</button>
+      </section>
+      
+      <section class="main-table">
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Line</th>
+              <th>Element</th>
+              <th>Desciption</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Added By</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <select name="select-Line" id="sel-l" class="sel-line">
+                  <option value="line-a">Line A</option>
+                  <option value="line-b">Line B</option>
+                  <option value="line-c">Line C</option>
+                </select>
+              </td>
+              <td>Motor</td>
+              <td>strange sound during startup</td>
+              <td>09.09.2023</td>
+              <td>
+                <select name="select-status" id="sel-s" class="sel-status">
+                  <option value="inform">Informed</option>
+                  <option value="plan">Planned</option>
+                  <option value="rep">Repaired</option>
+                </select>
+              </td>
+              <td>Blublubl</td>
+              <td><button class="edit-btn">Edit</button></td>
+              <td><button class="del-btn">Del</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+  </div>
+</body>
+</html>
