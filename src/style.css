@@ -154,3 +154,28 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+input {
+  width: 90%;
+}
+
+.status-planned {
+  color: rgb(120, 120, 0);
+  background-color: yellow;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.status-repaired {
+  color: rgb(0, 133, 22);
+  background-color: rgb(92, 255, 119);
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.status-informed {
+  color: rgb(116, 26, 26);
+  background-color: rgb(255, 80, 80);
+  border-radius: 20px;
+  padding: 5px;
+}

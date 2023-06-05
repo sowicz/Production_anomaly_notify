@@ -20,7 +20,7 @@
       </nav>
     
       <section class="buttons">
-        <button class="btn operator">Operator</button>
+        <button class="btn operator activeBtn">Operator</button>
         <button class="btn maintenance">Maintenance</button>
         <button class="btn manager">Manager</button>
       </section>
@@ -41,27 +41,46 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="tr-example">
               <td>1</td>
-              <td>
-                <select name="select-Line" id="sel-l" class="sel-line">
-                  <option value="line-a">Line A</option>
-                  <option value="line-b">Line B</option>
-                  <option value="line-c">Line C</option>
-                </select>
-              </td>
+              <td>Line A</td>
               <td>Motor</td>
               <td>strange sound during startup</td>
               <td>09.09.2023</td>
+              <td><p class="status-planned">Planned</p></td>
+              <td>Blublubl</td>
+              <td><button class="edit-btn">Edit</button></td>
+              <td><button class="del-btn">Del</button></td>
+            </tr>
+            <tr class="tr-input">
+              <td>2</td>
               <td>
-                <select name="select-status" id="sel-s" class="sel-status">
+                <select name="select-Line" id="sel-line" class="sel-l">
+                  <option value="line-A">Line A</option>
+                  <option value="line-B">Line B</option>
+                  <option value="line-C">Line C</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" name="" id="line-element">
+              </td>
+              <td>
+                <textarea name="" id="description" cols="20" rows="3"></textarea>
+              </td>
+              <td>
+                <input type="date" name="" id="input-date">
+              </td>
+              <td>
+                <select name="select-status" id="sel-status" class="sel-s">
                   <option value="inform">Informed</option>
                   <option value="plan">Planned</option>
                   <option value="rep">Repaired</option>
                 </select>
               </td>
-              <td>Blublubl</td>
-              <td><button class="edit-btn">Edit</button></td>
+              <td>
+                <input type="text" name="" id="input-name">
+              </td>
+              <td><button class="add-btn">Add</button></td>
               <td><button class="del-btn">Del</button></td>
             </tr>
           </tbody>
