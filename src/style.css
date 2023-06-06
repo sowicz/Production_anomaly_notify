@@ -159,21 +159,21 @@ input {
   width: 90%;
 }
 
-.status-planned {
+.planned {
   color: rgb(120, 120, 0);
   background-color: yellow;
   border-radius: 20px;
   padding: 5px;
 }
 
-.status-repaired {
+.repaired {
   color: rgb(0, 133, 22);
   background-color: rgb(92, 255, 119);
   border-radius: 20px;
   padding: 5px;
 }
 
-.status-informed {
+.informed {
   color: rgb(116, 26, 26);
   background-color: rgb(255, 80, 80);
   border-radius: 20px;
