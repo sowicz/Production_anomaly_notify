@@ -86,9 +86,9 @@ nav {
   background-color: rgb(130, 230, 220);
 }
 
-//----------- end buttons styling------------
 
-@media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 1082px) {
   .buttons {
     transform: translateX(-10px); 
   }
@@ -97,62 +97,79 @@ nav {
     padding: 10px;
   }
 }
+//----------- end of buttons styling------------
 
-// main table section
-.main-table {
+
+//---- MAIN TABLE SECTION
+.main-table-section {
   font-size: 0.9rem;
-  display: flex;
-  justify-content: center;
-  width: 70%;
+  margin: 100px;
+  display: block;
+  width: 90%;
   margin: auto;
-  height: 50%;
+  height: 65%;
 }
+
+//----MAIN TABLE
+.main-table-table {
+  display: block;
+  max-width: 75%;
+  height: auto;
+  max-height: 100%;
+  margin: auto;
+  overflow: auto;
+}
+
+// -------------TABLE DISPLAY BLOCK TO OVERFLOW
+
 
 table, th, td {
   padding: 1rem;
   border-collapse: collapse;
-  
 }
 th:last-child {
-  border-radius: 0 0.6rem 0 0;
+  border-radius: 0 0.5rem 0 0;
 }
 th:first-child {
-  border-radius: 0.6rem 0 0 0;
+  border-radius: 0.5rem 0 0 0;
 }
 td {
+  max-width: 180px;
   text-align: center;
+  overflow-wrap: break-word;
   
 }
+
 table {
-  width: 100%;
-  height: 50%;
   padding: 0;
-  
   box-shadow:  0 0.1rem 0.8rem #0005;
-  border-radius: 0.6rem;
-  overflow: auto;
+  border-radius: 0.5rem;
   background-color: rgb(235, 235, 235, 0.6);
   backdrop-filter: blur(5px);
 }
 thead {
-  width: 100%;
   height: 10%;
   background-color: rgb(150, 230, 230);
 }
 
 
-// media query for main table
-@media screen and (max-width: 768px) {
-  .main-table {
-    
-    margin: auto;
+// -------------- media query for main table
+@media screen and (max-width: 1082px) {
+  .main-table-section {
+    display: block;
     font-size: 1rem;
-    width: 50%;
+    width: 90%;
     font-size: 0.6rem;
   }
-  table, th, td {
-    padding: 0.4rem;
+  .main-table-table {
+    max-width: 100%;
+    margin: 0;
+    overflow: auto;
   }
+  th, td {
+    padding: 0.5rem;
+  }
+
 }
 tbody tr:nth-child(even) {
   background-color: #0000000b;
@@ -160,8 +177,25 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #fff6;
 }
+
 input {
-  width: 90%;
+  width: 80%;
+}
+
+@media screen and (max-width: 900px) {
+  input {
+    min-width: 55px;
+    font-size: 0.7rem;
+  }
+  #input-date {
+    min-width: 75px;
+  }
+  select {
+    font-size: 0.7rem;
+  }
+}
+textarea {
+  max-width: 180px;
 }
 .planned {
   color: rgb(120, 120, 0);
@@ -180,4 +214,38 @@ input {
   background-color: rgb(255, 80, 80);
   border-radius: 20px;
   padding: 5px;
+}
+.add-btn {
+  padding: 2px;
+}
+.edit-btn {
+  padding: 2px;
+}
+.del-btn {
+  padding: 2px;
+}
+.reset-btn {
+  padding: 2px;
+}
+
+//----------------SCROLLBAR STYLE
+table::-webkit-scrollbar {
+  width: 12px;
+  max-width: 12px;
+  height: 10px;
+}
+table::-webkit-scrollbar-track {
+  width: 12px;
+  height: 10px;
+  background-color: transparent;
+}
+table::-webkit-scrollbar-thumb {
+  width: 8px;
+  height: 10px;
+  background-color: rgb(149, 182, 182);
+  border-radius: 10px;
+  background-clip: content-box;
+}
+table::-webkit-scrollbar-corner {
+  background-color: transparent;
 }

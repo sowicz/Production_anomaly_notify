@@ -32,40 +32,78 @@ var tableBody = document.getElementById('table-body');
 //NEW ROW ADD BUTTON
 var rowAddBtn = rowInput === null || rowInput === void 0 ? void 0 : rowInput.querySelector('.add-btn');
 // TEST TO CHECK INPUTS IF WORK WELL
-var show = function () {
-    console.log(rowInputLine.value.replace(/-/g, " "));
-    console.log(rowInputElement.value);
-    console.log(rowInputDescription.value);
-    console.log(rowInputDate.value);
-    console.log(rowInputName.value);
-};
+// const show = () => {    
+//     console.log(rowInputLine.value.replace(/-/g, " "))
+//     console.log(rowInputElement.value)
+//     console.log(rowInputDescription.value)
+//     console.log(rowInputDate.value)
+//     console.log(rowInputName.value)
+// }
 // rowAddBtn?.addEventListener('click', show);
 // CLASS TO MAKE NEW ROW ON TABLE
 var Row = /** @class */ (function () {
-    function Row(count, line, element, descript, date, status, addby) {
+    function Row(count, line, element, descript, date, stat, addby) {
         this.count = count;
         this.line = line;
         this.element = element;
         this.descript = descript;
         this.date = date;
-        this.status = status;
+        this.stat = stat;
         this.addby = addby;
     }
     return Row;
 }());
-//ARRAY TO PUSH ROW DATA AS OBJ
+//VARIABLE ARRAY TO PUSH ROW DATA 
 var rowTab = [];
+// HARDCODE EXAMPLE DATA TO SHOW ON PAGE HOW IT LOOKS AFTER ADDING TO TABLE
+var exampleRow = new Row(1, 'Line A', 'Motor', 'Strange sound during startup', '2023-06-08', 'informed', 'Kamil');
+rowTab.push(exampleRow);
+// CHECK NUMBERS OF ROW AND RETURN NUMBER FOR NEW ROW
+function rowCounter() {
+    var num = rowTab.length;
+    return num + 1;
+}
 rowAddBtn === null || rowAddBtn === void 0 ? void 0 : rowAddBtn.addEventListener('click', getDataRow);
 function getDataRow(a) {
-    a = new Row(1, rowInputLine.value.replace(/-/g, " "), rowInputElement.value, rowInputDescription.value, rowInputDate.value, rowInputStatus.value, rowInputName.value);
+    a = new Row(rowCounter(), rowInputLine.value.replace(/-/g, " "), rowInputElement.value, rowInputDescription.value, rowInputDate.value, rowInputStatus.value, rowInputName.value);
     rowTab.push(a);
     console.log(rowTab);
     renderData();
 }
+// RENDER ROW DATA IN DOM
 function renderData() {
     var data = document.createElement('tr');
-    data.innerHTML =
-        "\n        <td>".concat(rowTab[0].count, "</td>\n        <td>").concat(rowTab[0].line, "</td>\n        <td>").concat(rowTab[0].element, "</td>\n        <td>").concat(rowTab[0].descript, "</td>\n        <td>").concat(rowTab[0].date, "</td>\n        <td><p class=\"").concat(rowTab[0].status, "\">").concat(rowTab[0].status, "</p></td>\n        <td>").concat(rowTab[0].addby, "</td>\n        <td><button class=\"edit-btn\">Edit</button></td>\n        <td><button class=\"del-btn\">Del</button></td>\n        ");
-    tableBody.append(data);
-    tableBody.insertBefore(data, tableBody.children[1]);
+    for (var _i = 0, rowTab_1 = rowTab; _i < rowTab_1.length; _i++) {
+        var row = rowTab_1[_i];
+        data.innerHTML =
+            "\n            <td>".concat(row.count, "</td>\n            <td>").concat(row.line, "</td>\n            <td>").concat(row.element, "</td>\n            <td>").concat(row.descript, "</td>\n            <td>").concat(row.date, "</td>\n            <td><p class=\"").concat(row.stat, "\">").concat(row.stat, "</p></td>\n            <td>").concat(row.addby, "</td>\n            <td><button class=\"edit-btn\">Edit</button></td>\n            <td><button class=\"del-btn\" onClick=\"deleteRow(").concat(row.count, ")\">Del</button></td>\n            ");
+        tableBody.append(data);
+        // tableBody.prepend(data);
+        // ADD ROW DATA AT BEGINNING
+        // NEXT ROW DATA ADD BEFORE INPUTS ROW
+        if (rowCounter() === 2) {
+            tableBody.insertBefore(data, tableBody.children[0]);
+        }
+        else {
+            // COUNTER '-2' BECAUSE ROW COUNTER IS INCREMENT TO COUNT WELL
+            tableBody.insertBefore(data, tableBody.children[rowCounter() - 2]);
+        }
+        clearInputs();
+    }
+}
+renderData();
+// CLEAR ALL INPUTS AFTER ADD ROW
+function clearInputs() {
+    var resetBtn = document.querySelector('.reset-btn');
+    resetBtn.addEventListener('click', function () {
+        rowInputLine.value = "";
+        rowInputElement.value = "";
+        rowInputDescription.value = "";
+        rowInputDate.value = "";
+        rowInputStatus.value = "";
+        rowInputName.value = "";
+    });
+}
+function deleteRow(index) {
+    console.log("Row ".concat(index, " deleted"));
 }
