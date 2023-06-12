@@ -59,17 +59,26 @@ var rowTab = [];
 var exampleRow = new Row(1, 'Line A', 'Motor', 'Strange sound during startup', '2023-06-08', 'informed', 'Kamil');
 rowTab.push(exampleRow);
 // CHECK NUMBERS OF ROW AND RETURN NUMBER FOR NEW ROW
-function rowCounter() {
-    var num = rowTab.length;
-    return num + 1;
-}
+// num AS GLOBAL VARIABLE BECAUSE WE WANT TO KNOW NUMBERS OF NITICES IN TABLE
+// let num:number = rowTab.length+1;
+// function rowCounter() {
+//         for (const el in rowTab)
+//             if(num == rowTab[el].count){
+//                 num++;
+//             }
+//     return num;
+// }
 rowAddBtn === null || rowAddBtn === void 0 ? void 0 : rowAddBtn.addEventListener('click', getDataRow);
 function getDataRow(a) {
-    a = new Row(rowCounter(), rowInputLine.value.replace(/-/g, " "), rowInputElement.value, rowInputDescription.value, rowInputDate.value, rowInputStatus.value, rowInputName.value);
+    a = new Row(
+    // rowCounter(),
+    num, rowInputLine.value.replace(/-/g, " "), rowInputElement.value, rowInputDescription.value, rowInputDate.value, rowInputStatus.value, rowInputName.value);
     rowTab.push(a);
     console.log(rowTab);
     renderData();
 }
+// NUM AS GLOBAL VARIABLE TO TRACK NUMBERS OF NOTICIES IN TABLE
+var num = rowTab.length;
 // RENDER ROW DATA IN DOM
 function renderData() {
     var data = document.createElement('tr');
@@ -77,19 +86,22 @@ function renderData() {
         var row = rowTab_1[_i];
         data.innerHTML =
             "\n            <td>".concat(row.count, "</td>\n            <td>").concat(row.line, "</td>\n            <td>").concat(row.element, "</td>\n            <td>").concat(row.descript, "</td>\n            <td>").concat(row.date, "</td>\n            <td><p class=\"").concat(row.stat, "\">").concat(row.stat, "</p></td>\n            <td>").concat(row.addby, "</td>\n            <td><button class=\"edit-btn\">Edit</button></td>\n            <td><button class=\"del-btn\" onClick=\"deleteRow(").concat(row.count, ")\">Del</button></td>\n            ");
+        data.setAttribute('id', "tr-".concat(row.count));
         tableBody.append(data);
         // tableBody.prepend(data);
         // ADD ROW DATA AT BEGINNING
         // NEXT ROW DATA ADD BEFORE INPUTS ROW
-        if (rowCounter() === 2) {
+        if (num == 1) {
             tableBody.insertBefore(data, tableBody.children[0]);
         }
         else {
-            // COUNTER '-2' BECAUSE ROW COUNTER IS INCREMENT TO COUNT WELL
-            tableBody.insertBefore(data, tableBody.children[rowCounter() - 2]);
+            //GET .tr-input CLASS TO INSERT DATE BEFORE OUR INPUT IN TABLE
+            var trInpt = document.querySelector('.tr-input');
+            tableBody.insertBefore(data, trInpt);
         }
         clearInputs();
     }
+    num++;
 }
 renderData();
 // CLEAR ALL INPUTS AFTER ADD ROW
@@ -105,5 +117,20 @@ function clearInputs() {
     });
 }
 function deleteRow(index) {
-    console.log("Row ".concat(index, " deleted"));
+    //CHECK IF tab COUNT HAS VALUE "INDEX"
+    //GET FROM DOM TABLE ROW WITH PROPER ID (==INDEX)
+    //REMOVE THIS ROW
+    for (var el in rowTab) {
+        if (index == rowTab[el].count) {
+            console.log("Row ".concat(index, " deleted"));
+            var rowToRemove = document.getElementById("tr-".concat(index));
+            rowToRemove === null || rowToRemove === void 0 ? void 0 : rowToRemove.remove();
+            //DELETE FROM rowTab ACTUAL ELEMENT AND CHANGE ARRAY 
+            // TO NOT HAVE UNDEFINED VALUE IN ARRAY 
+            delete rowTab[el];
+            var a = rowTab.filter(function (item) { return item !== undefined; });
+            rowTab = a;
+            console.log(rowTab);
+        }
+    }
 }

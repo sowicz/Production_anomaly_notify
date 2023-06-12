@@ -99,11 +99,20 @@ let exampleRow = new Row (
 )
 rowTab.push(exampleRow);
 
+
+
 // CHECK NUMBERS OF ROW AND RETURN NUMBER FOR NEW ROW
-function rowCounter() {
-    let num:number = rowTab.length;
-    return num+1;
-}
+// num AS GLOBAL VARIABLE BECAUSE WE WANT TO KNOW NUMBERS OF NITICES IN TABLE
+
+// let num:number = rowTab.length+1;
+// function rowCounter() {
+    
+//         for (const el in rowTab)
+//             if(num == rowTab[el].count){
+//                 num++;
+//             }
+//     return num;
+// }
 
 
 rowAddBtn?.addEventListener('click', getDataRow);
@@ -111,7 +120,8 @@ rowAddBtn?.addEventListener('click', getDataRow);
 
 function getDataRow(a: object) {
     a = new Row(
-        rowCounter(),
+        // rowCounter(),
+        num,
         rowInputLine.value.replace(/-/g, " "),
         rowInputElement.value,
         rowInputDescription.value,
@@ -123,6 +133,9 @@ function getDataRow(a: object) {
     console.log(rowTab);
     renderData();
 }
+
+// NUM AS GLOBAL VARIABLE TO TRACK NUMBERS OF NOTICIES IN TABLE
+let num:number = rowTab.length;
 
 // RENDER ROW DATA IN DOM
 function renderData() {
@@ -141,6 +154,7 @@ function renderData() {
             <td><button class="edit-btn">Edit</button></td>
             <td><button class="del-btn" onClick="deleteRow(${row.count})">Del</button></td>
             `;
+        data.setAttribute('id', `tr-${row.count}`)
         tableBody.append(data)
         // tableBody.prepend(data);
         
@@ -148,17 +162,18 @@ function renderData() {
         // ADD ROW DATA AT BEGINNING
         // NEXT ROW DATA ADD BEFORE INPUTS ROW
 
-        if (rowCounter()===2) {
+        if (num==1) {
             tableBody.insertBefore(data, tableBody.children[0]);
         } else {
-            // COUNTER '-2' BECAUSE ROW COUNTER IS INCREMENT TO COUNT WELL
-            tableBody.insertBefore(data, tableBody.children[rowCounter()-2]);
+            //GET .tr-input CLASS TO INSERT DATE BEFORE OUR INPUT IN TABLE
+            let trInpt = document.querySelector('.tr-input')
+            tableBody.insertBefore(data, trInpt);
         }
-
 
         clearInputs()
-        }
     }
+    num++;
+}
 
 renderData();
 
@@ -178,6 +193,21 @@ function clearInputs() {
 }
 
 function deleteRow(index: number) {
-    console.log(`Row ${index} deleted`)
+    //CHECK IF tab COUNT HAS VALUE "INDEX"
+    //GET FROM DOM TABLE ROW WITH PROPER ID (==INDEX)
+    //REMOVE THIS ROW
+    for(const el in rowTab) {
+        if(index == rowTab[el].count){
+            console.log(`Row ${index} deleted`)
+            const rowToRemove = document.getElementById(`tr-${index}`)
+            rowToRemove?.remove();
 
+            //DELETE FROM rowTab ACTUAL ELEMENT AND CHANGE ARRAY 
+            // TO NOT HAVE UNDEFINED VALUE IN ARRAY 
+            delete rowTab[el];
+            const a = rowTab.filter(item => item !== undefined)
+            rowTab = a;
+            console.log(rowTab)
+        } 
+    }
 }
